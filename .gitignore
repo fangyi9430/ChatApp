@@ -1,0 +1,17 @@
+# Xcode
+**/xcuserdata/
+**/xcshareddata/
+**/DerivedData/
+*.xcworkspace
+
+# Build Products
+*.app
+*.ipa
+*.dSYM
+
+# Swift Package Manager
+.build/
+
+# CocoaPods
+Pods/
+
