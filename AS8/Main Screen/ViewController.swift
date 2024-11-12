@@ -98,6 +98,8 @@ class ViewController: UIViewController {
         
         //MARK: tapping the floating add contact button...
         mainScreen.floatingButtonAddContact.addTarget(self, action: #selector(addContactButtonTapped), for: .touchUpInside)
+        
+        // update main screen when notification center received a new chat.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,9 +112,16 @@ class ViewController: UIViewController {
     }
     
     @objc func addContactButtonTapped(){
-        let addContactController = AddContactViewController()
-        addContactController.currentUser = self.currentUser
-        navigationController?.pushViewController(addContactController, animated: true)
+        let addContactController = SelectContactBottomSheetViewController()
+        
+        addContactController.modalPresentationStyle = .pageSheet
+        // addContactController.currentUser = self.currentUser
+        if let sheetPresentationController = addContactController.sheetPresentationController {
+            sheetPresentationController.detents = [.medium(), .large()] // 设置弹出高度
+            sheetPresentationController.prefersGrabberVisible = true // 显示抓手条
+        }
+            
+        present(addContactController, animated: true, completion: nil)
     }
 }
 
